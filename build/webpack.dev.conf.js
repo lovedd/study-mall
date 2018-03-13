@@ -9,6 +9,15 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
+// nodejs开发框架express，用来简化操作
+const express = require('express')
+// 创建node.js的express开发框架的实例
+const app = express()
+// 引用的json地址
+
+var goodsData = require('../mock/goods.json')
+var apiRoutes = express.Router()
+app.use('/api', apiRoutes)
 
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
@@ -42,6 +51,14 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     quiet: true, // necessary for FriendlyErrorsPlugin
     watchOptions: {
       poll: config.dev.poll,
+    },
+    before(app) {
+      app.get('/api/goods.do', (req, res) => {
+        res.json({
+          resCode: 0,
+          data: goodsData
+        })
+      })
     }
   },
   plugins: [

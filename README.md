@@ -1,6 +1,6 @@
 # study-mall
 
-> liuliu
+> a study project
 
 ## Build Setup
 
