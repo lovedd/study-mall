@@ -55,7 +55,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     before(app) {
       app.get('/api/goods.do', (req, res) => {
         res.json({
-          resCode: 0,
+          resCode: '0',
           data: goodsData
         })
       })

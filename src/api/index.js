@@ -47,7 +47,7 @@ function apiAxios (method, url, params, success, failure) {
     .then(function (res) {
       console.log(res)
       console.log(res.data.resCode)
-      if (res.data.resCode === 0) {
+      if (res.data.resCode === '0') {
         if (success) {
           success(res.data)
         }
