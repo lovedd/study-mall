@@ -60,7 +60,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 import PageHeader from '../../components/PageHeader'
 import PageBread from '../../components/PageBread'
 import PageFooter from '../../components/PageFooter'
@@ -81,8 +80,8 @@ export default {
   },
   methods: {
     getGoodsList () {
-      axios.get('/api/goods.do').then((res) => {
-        let data = res.data.data
+      this.$api.get('/api/goods.do', null, res => {
+        let data = res.data
         console.log(res)
         this.goodsList = data.result
       })
