@@ -97,7 +97,7 @@ export default {
   },
   methods: {
     getGoodsList () {
-      this.$api.get('/api/goods.do', null, res => {
+      this.$api.get('/api/goods', null, res => {
         let data = res.data
         console.log(res)
         this.goodsList = data.result
