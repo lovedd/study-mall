@@ -46,8 +46,8 @@ function apiAxios (method, url, params, success, failure) {
   })
     .then(function (res) {
       console.log(res)
-      console.log(res.data.resCode)
-      if (res.data.resCode === '0') {
+      console.log(res.data.status)
+      if (res.data.status === '0') {
         if (success) {
           success(res.data)
         }
@@ -60,9 +60,9 @@ function apiAxios (method, url, params, success, failure) {
       }
     })
     .catch(function (err) {
-      let res = err.response
+      // let res = err.response
       if (err) {
-        window.alert('api error, HTTP CODE: ' + res.status)
+        window.alert(err)
       }
     })
 }

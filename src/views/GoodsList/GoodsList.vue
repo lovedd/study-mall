@@ -30,11 +30,11 @@
                 <ul>
                   <li v-for="item in showGoodsList" :key="item.productId">
                     <div class="pic">
-                      <a href="#"><img v-lazy ="'/static/'+ item.prodcutImg" alt=""></a>
+                      <a href="#"><img v-lazy ="'/static/'+ item.productImage" alt=""></a>
                     </div>
                     <div class="main">
-                      <div class="name">XX</div>
-                      <div class="price">{{item.prodcutPrice}}</div>
+                      <div class="name">{{item.productName}}</div>
+                      <div class="price">{{item.salePrice}}</div>
                       <div class="btn-area">
                         <a href="javascript:;" class="btn btn--m">加入购物车</a>
                       </div>
@@ -83,7 +83,7 @@ export default {
   computed: {
     showGoodsList () {
       return this.goodsList.filter(item => {
-        return this.filterPrice.startPrice < item.prodcutPrice && this.filterPrice.endPrice > item.prodcutPrice
+        return this.filterPrice.startPrice < item.salePrice && this.filterPrice.endPrice > item.salePrice
       })
     }
   },
@@ -97,10 +97,10 @@ export default {
   },
   methods: {
     getGoodsList () {
-      this.$api.get('/api/goods', null, res => {
-        let data = res.data
+      this.$api.get('/goods', null, res => {
+        let result = res.result || {}
         console.log(res)
-        this.goodsList = data.result
+        this.goodsList = result.list
       })
     },
     checkPriceFilter (index) {
